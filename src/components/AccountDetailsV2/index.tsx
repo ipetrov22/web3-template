@@ -9,7 +9,6 @@ import { colors } from 'theme/colors'
 
 import { TransactionDetails } from '../../state/transactions/types'
 import Loader from '../Loader'
-import LogoView from './LogoView'
 import TransactionBody from './TransactionBody'
 
 export enum TransactionState {
@@ -76,7 +75,6 @@ export const TransactionSummary = ({
 
   return chainId ? (
     <Grid href={link} target="_blank" isLastTransactionInList={isLastTransactionInList}>
-      <LogoView info={info} />
       <TextContainer as="span">
         <TransactionBody info={info} transactionState={transactionState} />
       </TextContainer>

@@ -1,20 +1,14 @@
 import { t, Trans } from '@lingui/macro'
-import { sendAnalyticsEvent, TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, InterfaceElementName, InterfaceEventName } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import { IconWrapper } from 'components/Identicon/StatusIcon'
 import WalletDropdown from 'components/WalletDropdown'
 import { getConnection } from 'connection/utils'
-import { Portal } from 'nft/components/common/Portal'
-import { useIsNftClaimAvailable } from 'nft/hooks/useIsNftClaimAvailable'
-import { getIsValidSwapQuote } from 'pages/Swap'
+import { Portal } from 'components/Common/Portal'
 import { darken } from 'polished'
 import { useCallback, useMemo, useRef } from 'react'
 import { AlertTriangle, ChevronDown, ChevronUp } from 'react-feather'
 import { useAppSelector } from 'state/hooks'
-import { useDerivedSwapInfo } from 'state/swap/hooks'
 import styled, { useTheme } from 'styled-components/macro'
-import { colors } from 'theme/colors'
 import { flexRowNoWrap } from 'theme/styles'
 
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -98,13 +92,11 @@ const Web3StatusConnectWrapper = styled.div<{ faded?: boolean }>`
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{
   pending?: boolean
-  isClaimAvailable?: boolean
 }>`
   background-color: ${({ pending, theme }) => (pending ? theme.accentAction : theme.deprecated_bg1)};
   border: 1px solid ${({ pending, theme }) => (pending ? theme.accentAction : theme.deprecated_bg1)};
   color: ${({ pending, theme }) => (pending ? theme.white : theme.textPrimary)};
   font-weight: 500;
-  border: ${({ isClaimAvailable }) => isClaimAvailable && `1px solid ${colors.purple300}`};
   :hover,
   :focus {
     border: 1px solid ${({ theme }) => darken(0.05, theme.deprecated_bg3)};
@@ -198,20 +190,14 @@ const CHEVRON_PROPS = {
 function Web3StatusInner() {
   const { account, connector, chainId, ENSName } = useWeb3React()
   const connectionType = getConnection(connector).type
-  const {
-    trade: { state: tradeState, trade },
-    inputError: swapInputError,
-  } = useDerivedSwapInfo()
-  const validSwapQuote = getIsValidSwapQuote(trade, tradeState, swapInputError)
+
   const theme = useTheme()
   const toggleWalletDropdown = useToggleWalletDropdown()
   const handleWalletDropdownClick = useCallback(() => {
-    sendAnalyticsEvent(InterfaceEventName.ACCOUNT_DROPDOWN_BUTTON_CLICKED)
     toggleWalletDropdown()
   }, [toggleWalletDropdown])
   const toggleWalletModal = useToggleWalletModal()
   const walletIsOpen = useModalIsOpen(ApplicationModal.WALLET_DROPDOWN)
-  const isClaimAvailable = useIsNftClaimAvailable((state) => state.isClaimAvailable)
 
   const error = useAppSelector((state) => state.connection.errorByConnectionType[connectionType])
 
@@ -249,9 +235,8 @@ function Web3StatusInner() {
         data-testid="web3-status-connected"
         onClick={handleWalletDropdownClick}
         pending={hasPendingTransactions}
-        isClaimAvailable={isClaimAvailable}
       >
-        {!hasPendingTransactions && <StatusIcon enableInfotips={true} size={24} connectionType={connectionType} />}
+        {!hasPendingTransactions && <StatusIcon size={24} connectionType={connectionType} />}
         {hasPendingTransactions ? (
           <RowBetween>
             <Text>
@@ -275,22 +260,15 @@ function Web3StatusInner() {
       'aria-label': walletIsOpen ? t`Close wallet connection options` : t`Open wallet connection options`,
     }
     return (
-      <TraceEvent
-        events={[BrowserEvent.onClick]}
-        name={InterfaceEventName.CONNECT_WALLET_BUTTON_CLICKED}
-        properties={{ received_swap_quote: validSwapQuote }}
-        element={InterfaceElementName.CONNECT_WALLET_BUTTON}
-      >
-        <Web3StatusConnectWrapper faded={!account}>
-          <StyledConnectButton data-testid="navbar-connect-wallet" onClick={toggleWalletModal}>
-            <Trans>Connect</Trans>
-          </StyledConnectButton>
-          <VerticalDivider />
-          <ChevronWrapper onClick={handleWalletDropdownClick} data-testid="navbar-toggle-dropdown">
-            {walletIsOpen ? <ChevronUp {...chevronProps} /> : <ChevronDown {...chevronProps} />}
-          </ChevronWrapper>
-        </Web3StatusConnectWrapper>
-      </TraceEvent>
+      <Web3StatusConnectWrapper faded={!account}>
+        <StyledConnectButton data-testid="navbar-connect-wallet" onClick={toggleWalletModal}>
+          <Trans>Connect</Trans>
+        </StyledConnectButton>
+        <VerticalDivider />
+        <ChevronWrapper onClick={handleWalletDropdownClick} data-testid="navbar-toggle-dropdown">
+          {walletIsOpen ? <ChevronUp {...chevronProps} /> : <ChevronDown {...chevronProps} />}
+        </ChevronWrapper>
+      </Web3StatusConnectWrapper>
     )
   }
 }

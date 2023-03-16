@@ -1,5 +1,5 @@
-import { Box, BoxProps } from 'nft/components/Box'
-import { useIsMobile } from 'nft/hooks'
+import { Box, BoxProps } from 'components/Layout/Box'
+import { useIsMobile } from 'hooks/useIsMobile'
 import { ForwardedRef, forwardRef } from 'react'
 import { Z_INDEX } from 'theme/zIndex'
 

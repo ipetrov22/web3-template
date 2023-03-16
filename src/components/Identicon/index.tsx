@@ -1,7 +1,6 @@
 import jazzicon from '@metamask/jazzicon'
 import { useWeb3React } from '@web3-react/core'
-import useENSAvatar from 'hooks/useENSAvatar'
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components/macro'
 
 const StyledIdenticon = styled.div<{ iconSize: number }>`
@@ -12,16 +11,8 @@ const StyledIdenticon = styled.div<{ iconSize: number }>`
   font-size: initial;
 `
 
-const StyledAvatar = styled.img`
-  height: inherit;
-  width: inherit;
-  border-radius: inherit;
-`
-
 export default function Identicon({ size }: { size?: number }) {
   const { account } = useWeb3React()
-  const { avatar } = useENSAvatar(account ?? undefined)
-  const [fetchable, setFetchable] = useState(true)
   const iconSize = size ?? 24
 
   const icon = useMemo(() => account && jazzicon(iconSize, parseInt(account.slice(2, 10), 16)), [account, iconSize])
@@ -41,15 +32,9 @@ export default function Identicon({ size }: { size?: number }) {
     return
   }, [icon, iconRef])
 
-  const handleError = useCallback(() => setFetchable(false), [])
-
   return (
     <StyledIdenticon iconSize={iconSize}>
-      {avatar && fetchable ? (
-        <StyledAvatar alt="avatar" src={avatar} onError={handleError}></StyledAvatar>
-      ) : (
-        <span ref={iconRef} />
-      )}
+      <span ref={iconRef} />
     </StyledIdenticon>
   )
 }

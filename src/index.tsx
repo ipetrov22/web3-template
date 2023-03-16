@@ -1,7 +1,6 @@
 import '@reach/dialog/styles.css'
 import 'inter-ui'
 import 'polyfills'
-import 'tracing'
 
 import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
 import { MulticallUpdater } from 'lib/state/multicall'
@@ -11,7 +10,6 @@ import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
 import Web3Provider from './components/Web3Provider'
-import { LanguageProvider } from './i18n'
 import App from './pages/App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import store from './state'
@@ -43,17 +41,15 @@ createRoot(container).render(
   <StrictMode>
     <Provider store={store}>
       <HashRouter>
-        <LanguageProvider>
-          <Web3Provider>
-            <BlockNumberProvider>
-              <Updaters />
-              <ThemeProvider>
-                <ThemedGlobalStyle />
-                <App />
-              </ThemeProvider>
-            </BlockNumberProvider>
-          </Web3Provider>
-        </LanguageProvider>
+        <Web3Provider>
+          <BlockNumberProvider>
+            <Updaters />
+            <ThemeProvider>
+              <ThemedGlobalStyle />
+              <App />
+            </ThemeProvider>
+          </BlockNumberProvider>
+        </Web3Provider>
       </HashRouter>
     </Provider>
   </StrictMode>

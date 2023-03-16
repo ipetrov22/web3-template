@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { Box } from 'nft/components/Box'
+import { Box } from 'components/Layout/Box'
 import { ReactNode } from 'react'
 
 import * as styles from './NavIcon.css'

@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from 'react'
-import { useIsDarkMode } from 'state/user/hooks'
 
 import { blurs, UniconAttributeData, UniconAttributes, UniconAttributesToIndices } from './types'
 import { deriveUniconAttributeIndices, getUniconAttributeData, isEthAddress } from './utils'
@@ -101,7 +100,6 @@ function UniconSvg({
   address: string
   mobile?: boolean
 }) {
-  const isDarkMode = useIsDarkMode()
   const attributeData = useMemo(() => getUniconAttributeData(attributeIndices), [attributeIndices])
 
   const gradientId = `gradient${address + size}`
@@ -123,7 +121,6 @@ function UniconSvg({
 
       <g mask={`url(#${maskId})`}>
         <rect x="0" y="0" width="100%" height="100%" fill={`url(#${gradientId})`} />
-        {!isDarkMode && <rect x="0" y="0" width="100%" height="100%" fill="black" opacity={0.08} />}
         <ellipse
           cx={size / 2}
           cy={0}

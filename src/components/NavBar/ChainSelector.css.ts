@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css'
-import { lightGrayOverlayOnHover } from 'nft/css/common.css'
-
-import { sprinkles } from '../../nft/css/sprinkles.css'
+import { lightGrayOverlayOnHover } from 'css/common.css'
+import { sprinkles } from 'css/sprinkles.css'
 
 export const ChainSelector = style([
   lightGrayOverlayOnHover,

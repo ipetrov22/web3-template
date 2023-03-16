@@ -3,8 +3,6 @@ import { useWeb3React } from '@web3-react/core'
 import { RowFixed } from 'components/Row'
 import { getChainInfo } from 'constants/chainInfo'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
-import { useIsLandingPage } from 'hooks/useIsLandingPage'
-import { useIsNftPage } from 'hooks/useIsNftPage'
 import useMachineTimeMs from 'hooks/useMachineTime'
 import useBlockNumber from 'lib/hooks/useBlockNumber'
 import ms from 'ms.macro'
@@ -107,8 +105,6 @@ export default function Polling() {
   const [isHover, setIsHover] = useState(false)
   const machineTime = useMachineTimeMs(NETWORK_HEALTH_CHECK_MS)
   const blockTime = useCurrentBlockTimestamp()
-  const isNftPage = useIsNftPage()
-  const isLandingPage = useIsLandingPage()
 
   const waitMsBeforeWarning =
     (chainId ? getChainInfo(chainId)?.blockWaitMsBeforeWarning : DEFAULT_MS_BEFORE_WARNING) ?? DEFAULT_MS_BEFORE_WARNING
@@ -139,10 +135,6 @@ export default function Polling() {
     if (!chainId || !blockNumber) return ''
     return getExplorerLink(chainId, blockNumber.toString(), ExplorerDataType.BLOCK)
   }, [blockNumber, chainId])
-
-  if (isNftPage || isLandingPage) {
-    return null
-  }
 
   return (
     <RowFixed>

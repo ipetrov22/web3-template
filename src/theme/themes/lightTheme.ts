@@ -1,4 +1,4 @@
-import { Theme, vars } from '../css/sprinkles.css'
+import { Theme, vars } from 'css/sprinkles.css'
 
 export const lightTheme: Theme = {
   colors: {

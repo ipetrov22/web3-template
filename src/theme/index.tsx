@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { createGlobalStyle, css, ThemeProvider as StyledComponentsThemeProvider } from 'styled-components/macro'
 
 import { darkTheme, lightTheme } from './colors'
-import { rootCssString } from './css/cssStringFromTheme'
+import { rootCssString } from 'css/cssStringFromTheme'
 import { darkDeprecatedTheme, lightDeprecatedTheme } from './deprecatedColors'
 
 // todo - remove and replace imports with a new path
