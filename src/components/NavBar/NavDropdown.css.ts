@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css'
-
 import { sprinkles } from 'css/sprinkles.css'
 
 const baseNavDropdown = style([

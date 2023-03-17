@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { MOBILE_MEDIA_BREAKPOINT } from 'constants/breakpoints'
 import useCopyClipboard from 'hooks/useCopyClipboard'
 import React, {
@@ -404,7 +403,7 @@ export const CopyHelper = forwardRef<CopyHelperRefType, CopyHelperProps>(
       <CopyHelperContainer onClick={copy} color={color} clicked={isCopied}>
         <div style={{ display: 'flex', flexDirection: 'row', gap }}>
           {iconPosition === 'left' && <BaseIcon size={iconSize} strokeWidth={1.5} color={iconColor} />}
-          <CopyHelperText fontSize={fontSize}>{isCopied ? <Trans>Copied!</Trans> : children}</CopyHelperText>
+          <CopyHelperText fontSize={fontSize}>{isCopied ? <div>Copied!</div> : children}</CopyHelperText>
           {iconPosition === 'right' && <BaseIcon size={iconSize} strokeWidth={1.5} color={iconColor} />}
         </div>
       </CopyHelperContainer>

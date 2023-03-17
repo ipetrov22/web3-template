@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css'
-
 import { subhead } from 'css/common.css'
 import { sprinkles, vars } from 'css/sprinkles.css'
 

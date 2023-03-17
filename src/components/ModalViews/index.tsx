@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { ArrowUpCircle } from 'react-feather'
 import styled, { useTheme } from 'styled-components/macro'
@@ -31,9 +30,7 @@ export function LoadingView({ children, onDismiss }: { children: any; onDismiss:
       </ConfirmedIcon>
       <AutoColumn gap="100px" justify="center">
         {children}
-        <ThemedText.DeprecatedSubHeader>
-          <Trans>Confirm this transaction in your wallet</Trans>
-        </ThemedText.DeprecatedSubHeader>
+        <ThemedText.DeprecatedSubHeader>Confirm this transaction in your wallet</ThemedText.DeprecatedSubHeader>
       </AutoColumn>
     </ConfirmOrLoadingWrapper>
   )
@@ -67,9 +64,7 @@ export function SubmittedView({
             href={getExplorerLink(chainId, hash, ExplorerDataType.TRANSACTION)}
             style={{ marginLeft: '4px' }}
           >
-            <ThemedText.DeprecatedSubHeader>
-              <Trans>View transaction on Explorer</Trans>
-            </ThemedText.DeprecatedSubHeader>
+            <ThemedText.DeprecatedSubHeader>View transaction on Explorer</ThemedText.DeprecatedSubHeader>
           </ExternalLink>
         )}
       </AutoColumn>

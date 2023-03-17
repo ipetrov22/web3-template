@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { ApproveTransactionInfo, TransactionInfo, TransactionType } from 'state/transactions/types'
 import styled from 'styled-components/macro'
 
@@ -33,7 +32,7 @@ const Action = ({ pending, success, failed, transactionState }: ActionProps) => 
 }
 
 const FailedText = ({ transactionState }: { transactionState: TransactionState }) =>
-  transactionState === TransactionState.Failed ? <Trans>failed</Trans> : <span />
+  transactionState === TransactionState.Failed ? <div>failed</div> : <span />
 
 const ApprovalSummary = ({
   info,
@@ -45,9 +44,9 @@ const ApprovalSummary = ({
   const token = useToken(info.tokenAddress)
   const actionProps = {
     transactionState,
-    pending: <Trans>Approving</Trans>,
-    success: <Trans>Approved</Trans>,
-    failed: <Trans>Approve</Trans>,
+    pending: <div>Approving</div>,
+    success: <div>Approved</div>,
+    failed: <div>Approve</div>,
   }
 
   return (

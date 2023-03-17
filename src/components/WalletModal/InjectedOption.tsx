@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { Connector } from '@web3-react/types'
 import METAMASK_ICON_URL from 'assets/images/metamask.png'
 import INJECTED_DARK_ICON_URL from 'assets/svg/browser-wallet-dark.svg'
@@ -14,7 +13,7 @@ const METAMASK_PROPS = {
 }
 
 export function InstallMetaMaskOption() {
-  return <Option {...METAMASK_PROPS} header={<Trans>Install MetaMask</Trans>} link="https://metamask.io/" />
+  return <Option {...METAMASK_PROPS} header={<div>Install MetaMask</div>} link="https://metamask.io/" />
 }
 
 export function MetaMaskOption({ tryActivation }: { tryActivation: (connector: Connector) => void }) {

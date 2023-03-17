@@ -1,8 +1,8 @@
 import { useWeb3React } from '@web3-react/core'
+import { CheckMarkIcon } from 'components/Common/icons'
 import Loader from 'components/Loader'
 import { getChainInfo } from 'constants/chainInfo'
 import { SupportedChainId } from 'constants/chains'
-import { CheckMarkIcon } from 'components/Common/icons'
 import styled, { useTheme } from 'styled-components/macro'
 
 const LOGO_SIZE = 20

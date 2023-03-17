@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { getConnection, getConnectionName, getIsCoinbaseWallet, getIsMetaMaskWallet } from 'connection/utils'
 import { useCallback } from 'react'
@@ -215,11 +214,7 @@ export default function AccountDetails({
   const isInjectedMobileBrowser = (hasMetaMaskExtension || hasCoinbaseExtension) && isMobile
 
   function formatConnectorName() {
-    return (
-      <WalletName>
-        <Trans>Connected with</Trans> {getConnectionName(connectionType, hasMetaMaskExtension)}
-      </WalletName>
-    )
+    return <WalletName>Connected with {getConnectionName(connectionType, hasMetaMaskExtension)}</WalletName>
   }
 
   const clearAllTransactionsCallback = useCallback(() => {
@@ -232,9 +227,7 @@ export default function AccountDetails({
         <CloseIcon onClick={toggleWalletModal}>
           <CloseColor />
         </CloseIcon>
-        <HeaderRow>
-          <Trans>Account</Trans>
-        </HeaderRow>
+        <HeaderRow>Account</HeaderRow>
         <AccountSection>
           <YourAccount>
             <InfoCard>
@@ -258,7 +251,7 @@ export default function AccountDetails({
                           openOptions()
                         }}
                       >
-                        <Trans>Disconnect</Trans>
+                        Disconnect
                       </WalletAction>
                       <WalletAction
                         style={{ fontSize: '.825rem', fontWeight: 400 }}
@@ -266,7 +259,7 @@ export default function AccountDetails({
                           openOptions()
                         }}
                       >
-                        <Trans>Change</Trans>
+                        Change
                       </WalletAction>
                     </>
                   )}
@@ -285,13 +278,13 @@ export default function AccountDetails({
                   <div>
                     {account && (
                       <CopyHelper toCopy={account} gap={6} iconSize={16} fontSize={14}>
-                        <Trans>Copy Address</Trans>
+                        Copy Address
                       </CopyHelper>
                     )}
                     {chainId && account && (
                       <AddressLink href={getExplorerLink(chainId, ENSName ?? account, ExplorerDataType.ADDRESS)}>
                         <LinkIcon size={16} />
-                        <Trans>View on Explorer</Trans>
+                        View on Explorer
                       </AddressLink>
                     )}
                   </div>
@@ -304,12 +297,8 @@ export default function AccountDetails({
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
           <AutoRow mb="1rem" style={{ justifyContent: 'space-between' }}>
-            <ThemedText.DeprecatedBody>
-              <Trans>Recent Transactions</Trans>
-            </ThemedText.DeprecatedBody>
-            <LinkStyledButton onClick={clearAllTransactionsCallback}>
-              <Trans>(clear all)</Trans>
-            </LinkStyledButton>
+            <ThemedText.DeprecatedBody>Recent Transactions</ThemedText.DeprecatedBody>
+            <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
           {renderTransactions(confirmedTransactions)}
@@ -317,7 +306,7 @@ export default function AccountDetails({
       ) : (
         <LowerSection>
           <ThemedText.DeprecatedBody color={theme.textPrimary}>
-            <Trans>Your transactions will appear here...</Trans>
+            Your transactions will appear here...
           </ThemedText.DeprecatedBody>
         </LowerSection>
       )}

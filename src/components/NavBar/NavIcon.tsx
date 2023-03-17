@@ -1,4 +1,3 @@
-import { t } from '@lingui/macro'
 import { Box } from 'components/Layout/Box'
 import { ReactNode } from 'react'
 
@@ -11,7 +10,7 @@ interface NavIconProps {
   onClick: () => void
 }
 
-export const NavIcon = ({ children, isActive, label = t`Navigation button`, onClick }: NavIconProps) => {
+export const NavIcon = ({ children, isActive, label = `Navigation button`, onClick }: NavIconProps) => {
   return (
     <Box
       as="button"

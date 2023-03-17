@@ -15,28 +15,26 @@ const Nav = styled.nav`
 
 const Navbar = () => {
   return (
-    <>
-      <Nav>
-        <Box display="flex" height="full" flexWrap="nowrap">
-          <Box className={styles.leftSideContainer}>
-            <Box className={styles.logoContainer}>
-              <span>Logo</span>
-            </Box>
-            <Box display={{ sm: 'flex', lg: 'none' }}>
-              <ChainSelector leftAlign={true} />
-            </Box>
+    <Nav>
+      <Box display="flex" height="full" flexWrap="nowrap">
+        <Box className={styles.leftSideContainer}>
+          <Box className={styles.logoContainer}>
+            <span>Logo</span>
           </Box>
-          <Box className={styles.rightSideContainer}>
-            <Row gap="12">
-              <Box display={{ sm: 'none', lg: 'flex' }}>
-                <ChainSelector />
-              </Box>
-              <Web3Status />
-            </Row>
+          <Box display={{ sm: 'flex', lg: 'none' }}>
+            <ChainSelector leftAlign={true} />
           </Box>
         </Box>
-      </Nav>
-    </>
+        <Box className={styles.rightSideContainer}>
+          <Row gap="12">
+            <Box display={{ sm: 'none', lg: 'flex' }}>
+              <ChainSelector />
+            </Box>
+            <Web3Status />
+          </Row>
+        </Box>
+      </Box>
+    </Nav>
   )
 }
 

@@ -1,9 +1,8 @@
-import { t, Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
+import { Portal } from 'components/Common/Portal'
 import { IconWrapper } from 'components/Identicon/StatusIcon'
 import WalletDropdown from 'components/WalletDropdown'
 import { getConnection } from 'connection/utils'
-import { Portal } from 'components/Common/Portal'
 import { darken } from 'polished'
 import { useCallback, useMemo, useRef } from 'react'
 import { AlertTriangle, ChevronDown, ChevronUp } from 'react-feather'
@@ -218,16 +217,14 @@ function Web3StatusInner() {
     return (
       <Web3StatusError onClick={handleWalletDropdownClick}>
         <NetworkIcon />
-        <Text>
-          <Trans>Error</Trans>
-        </Text>
+        <Text>Error</Text>
       </Web3StatusError>
     )
   } else if (account) {
     const chevronProps = {
       ...CHEVRON_PROPS,
       color: theme.textSecondary,
-      'aria-label': walletIsOpen ? t`Close wallet connection options` : t`Open wallet connection options`,
+      'aria-label': walletIsOpen ? `Close wallet connection options` : `Open wallet connection options`,
     }
 
     return (
@@ -239,10 +236,7 @@ function Web3StatusInner() {
         {!hasPendingTransactions && <StatusIcon size={24} connectionType={connectionType} />}
         {hasPendingTransactions ? (
           <RowBetween>
-            <Text>
-              <Trans>{pending?.length} Pending</Trans>
-            </Text>{' '}
-            <Loader stroke="white" />
+            <Text>{pending?.length} Pending</Text> <Loader stroke="white" />
           </RowBetween>
         ) : (
           <AddressAndChevronContainer>
@@ -257,12 +251,12 @@ function Web3StatusInner() {
       ...CHEVRON_PROPS,
       color: theme.accentAction,
       'data-testid': 'navbar-wallet-dropdown',
-      'aria-label': walletIsOpen ? t`Close wallet connection options` : t`Open wallet connection options`,
+      'aria-label': walletIsOpen ? `Close wallet connection options` : `Open wallet connection options`,
     }
     return (
       <Web3StatusConnectWrapper faded={!account}>
         <StyledConnectButton data-testid="navbar-connect-wallet" onClick={toggleWalletModal}>
-          <Trans>Connect</Trans>
+          Connect
         </StyledConnectButton>
         <VerticalDivider />
         <ChevronWrapper onClick={handleWalletDropdownClick} data-testid="navbar-toggle-dropdown">

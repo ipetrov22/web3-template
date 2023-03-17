@@ -1,11 +1,10 @@
-import { Trans } from '@lingui/macro'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent, InterfaceElementName, SwapEventName } from '@uniswap/analytics-events'
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core'
 import { Pair } from '@uniswap/v2-sdk'
 import { useWeb3React } from '@web3-react/core'
 import { AutoColumn } from 'components/Column'
-import { LoadingOpacityContainer, loadingOpacityMixin } from 'components/Loader/styled'
+import { loadingOpacityMixin } from 'components/Loader/styled'
 import { isSupportedChain } from 'constants/chains'
 import { darken } from 'polished'
 import { ReactNode } from 'react'
@@ -224,7 +223,7 @@ export default function CurrencyInputPanel({
           <AutoColumn gap="sm" justify="center">
             <Lock />
             <ThemedText.DeprecatedLabel fontSize="12px" textAlign="center" padding="0 12px">
-              <Trans>The market price is outside your specified price range. Single-asset deposit only.</Trans>
+              The market price is outside your specified price range. Single-asset deposit only.
             </ThemedText.DeprecatedLabel>
           </AutoColumn>
         </FixedContainer>
@@ -257,7 +256,7 @@ export default function CurrencyInputPanel({
                       renderBalance ? (
                         renderBalance(selectedCurrencyBalance)
                       ) : (
-                        <Trans>Balance: {formatCurrencyAmount(selectedCurrencyBalance, 4)}</Trans>
+                        <div>Balance: {formatCurrencyAmount(selectedCurrencyBalance, 4)}</div>
                       )
                     ) : null}
                   </ThemedText.DeprecatedBody>
@@ -267,9 +266,7 @@ export default function CurrencyInputPanel({
                       name={SwapEventName.SWAP_MAX_TOKEN_AMOUNT_SELECTED}
                       element={InterfaceElementName.MAX_TOKEN_AMOUNT_BUTTON}
                     >
-                      <StyledBalanceMax onClick={onMax}>
-                        <Trans>MAX</Trans>
-                      </StyledBalanceMax>
+                      <StyledBalanceMax onClick={onMax}>MAX</StyledBalanceMax>
                     </TraceEvent>
                   ) : null}
                 </RowFixed>

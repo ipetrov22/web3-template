@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { Currency } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import { SupportedChainId } from 'constants/chains'
@@ -69,13 +68,13 @@ function ConfirmationPendingContent({
         </ConfirmedIcon>
         <AutoColumn gap="md" justify="center">
           <Text fontWeight={500} fontSize={20} color={theme.textPrimary} textAlign="center">
-            <Trans>Waiting for confirmation</Trans>
+            Waiting for confirmation
           </Text>
           <Text fontWeight={600} fontSize={16} color={theme.textPrimary} textAlign="center">
             {pendingText}
           </Text>
           <Text fontWeight={400} fontSize={12} color={theme.textSecondary} textAlign="center" marginBottom="12px">
-            <Trans>Confirm this transaction in your wallet</Trans>
+            Confirm this transaction in your wallet
           </Text>
         </AutoColumn>
       </AutoColumn>
@@ -130,18 +129,14 @@ function TransactionSubmittedContent({
           <ArrowUpCircle strokeWidth={1} size={inline ? '40px' : '75px'} color={theme.accentActive} />
         </ConfirmedIcon>
         <AutoColumn gap="md" justify="center" style={{ paddingBottom: '12px' }}>
-          <ThemedText.MediumHeader textAlign="center">
-            <Trans>Transaction submitted</Trans>
-          </ThemedText.MediumHeader>
+          <ThemedText.MediumHeader textAlign="center">Transaction submitted</ThemedText.MediumHeader>
           {currencyToAdd && connector.watchAsset && (
             <ButtonLight mt="12px" padding="6px 12px" width="fit-content" onClick={addToken}>
               {!success ? (
-                <RowFixed>
-                  <Trans>Add {currencyToAdd.symbol}</Trans>
-                </RowFixed>
+                <RowFixed>Add {currencyToAdd.symbol}</RowFixed>
               ) : (
                 <RowFixed>
-                  <Trans>Added {currencyToAdd.symbol} </Trans>
+                  <div>Added {currencyToAdd.symbol} </div>
                   <CheckCircle size="16px" stroke={theme.accentSuccess} style={{ marginLeft: '6px' }} />
                 </RowFixed>
               )}
@@ -149,13 +144,13 @@ function TransactionSubmittedContent({
           )}
           <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
             <Text fontWeight={600} fontSize={20} color={theme.accentTextLightPrimary}>
-              {inline ? <Trans>Return</Trans> : <Trans>Close</Trans>}
+              {inline ? <div>Return</div> : <div>Close</div>}
             </Text>
           </ButtonPrimary>
           {chainId && hash && (
             <ExternalLink href={getExplorerLink(chainId, hash, ExplorerDataType.TRANSACTION)}>
               <Text fontWeight={600} fontSize={14} color={theme.accentAction}>
-                <Trans>View on {chainId === SupportedChainId.MAINNET ? 'Etherscan' : 'Block Explorer'}</Trans>
+                View on {chainId === SupportedChainId.MAINNET ? 'Etherscan' : 'Block Explorer'}
               </Text>
             </ExternalLink>
           )}
@@ -199,7 +194,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: React
       <Section>
         <RowBetween>
           <Text fontWeight={600} fontSize={16}>
-            <Trans>Error</Trans>
+            Error
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
@@ -209,9 +204,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: React
         </AutoColumn>
       </Section>
       <BottomSection gap="12px">
-        <ButtonPrimary onClick={onDismiss}>
-          <Trans>Dismiss</Trans>
-        </ButtonPrimary>
+        <ButtonPrimary onClick={onDismiss}>Dismiss</ButtonPrimary>
       </BottomSection>
     </Wrapper>
   )

@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import * as Sentry from '@sentry/react'
 import { SmallButtonPrimary } from 'components/Button'
 import { useIsMobile } from 'hooks/useIsMobile'
@@ -56,7 +55,7 @@ const CodeTitle = styled.div`
   word-break: break-word;
 `
 
-const Fallback = ({ error, eventId }: { error: Error; eventId: string | null }) => {
+const Fallback = ({ error }: { error: Error; eventId: string | null }) => {
   const isMobile = useIsMobile()
 
   // @todo: ThemedText components should be responsive by default
@@ -72,14 +71,10 @@ const Fallback = ({ error, eventId }: { error: Error; eventId: string | null }) 
         <Column gap="xl">
           <>
             <Column gap="sm">
-              <Title textAlign="center">
-                <Trans>Something went wrong</Trans>
-              </Title>
+              <Title textAlign="center">Something went wrong</Title>
               <Description textAlign="center" color="textSecondary">
-                <Trans>
-                  Sorry, an error occured while processing your request. If you request support, be sure to copy the
-                  details of this error.
-                </Trans>
+                Sorry, an error occured while processing your request. If you request support, be sure to copy the
+                details of this error.
               </Description>
             </Column>
             <CodeBlockWrapper>
@@ -92,9 +87,7 @@ const Fallback = ({ error, eventId }: { error: Error; eventId: string | null }) 
             </CodeBlockWrapper>
           </>
           <StretchedRow>
-            <SmallButtonPrimary onClick={() => window.location.reload()}>
-              <Trans>Reload the app</Trans>
-            </SmallButtonPrimary>
+            <SmallButtonPrimary onClick={() => window.location.reload()}>Reload the app</SmallButtonPrimary>
           </StretchedRow>
         </Column>
       </BodyWrapper>

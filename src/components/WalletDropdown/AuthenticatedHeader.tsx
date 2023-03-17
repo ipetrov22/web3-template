@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { getConnection } from 'connection/utils'
 import { getChainInfoOrDefault } from 'constants/chainInfo'
@@ -111,13 +110,13 @@ const AuthenticatedHeader = () => {
         </FlexContainer>
         <IconContainer>
           <IconButton onClick={copy} Icon={Copy}>
-            {isCopied ? <Trans>Copied!</Trans> : <Trans>Copy</Trans>}
+            {isCopied ? <div>Copied!</div> : <div>Copy</div>}
           </IconButton>
           <IconButton href={`${explorer}address/${account}`} target="_blank" Icon={ExternalLinkIcon}>
-            <Trans>Explore</Trans>
+            Explore
           </IconButton>
           <IconButton data-testid="wallet-disconnect" onClick={disconnect} Icon={Power}>
-            <Trans>Disconnect</Trans>
+            Disconnect
           </IconButton>
         </IconContainer>
       </HeaderWrapper>

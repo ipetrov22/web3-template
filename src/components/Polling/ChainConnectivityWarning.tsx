@@ -1,10 +1,9 @@
-import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { getChainInfoOrDefault } from 'constants/chainInfo'
 import { SupportedChainId } from 'constants/chains'
 import { AlertTriangle } from 'react-feather'
 import styled from 'styled-components/macro'
-import { ExternalLink, MEDIA_WIDTHS } from 'theme'
+import { MEDIA_WIDTHS } from 'theme'
 
 const BodyRow = styled.div`
   color: ${({ theme }) => theme.textPrimary};
@@ -15,10 +14,6 @@ const BodyRow = styled.div`
 `
 const CautionTriangle = styled(AlertTriangle)`
   color: ${({ theme }) => theme.accentWarning};
-`
-const Link = styled(ExternalLink)`
-  color: ${({ theme }) => theme.black};
-  text-decoration: underline;
 `
 const TitleRow = styled.div`
   align-items: center;
@@ -57,15 +52,13 @@ export function ChainConnectivityWarning() {
     <Wrapper>
       <TitleRow>
         <CautionTriangle />
-        <TitleText>
-          <Trans>Network Warning</Trans>
-        </TitleText>
+        <TitleText>Network Warning</TitleText>
       </TitleRow>
       <BodyRow>
         {chainId === SupportedChainId.MAINNET ? (
-          <Trans>You may have lost your network connection.</Trans>
+          <div>You may have lost your network connection.</div>
         ) : (
-          <Trans>{label} might be down right now, or you may have lost your network connection.</Trans>
+          <div>{label} might be down right now, or you may have lost your network connection.</div>
         )}{' '}
       </BodyRow>
     </Wrapper>

@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { useWeb3React } from '@web3-react/core'
 import { DEFAULT_DEADLINE_FROM_NOW } from 'constants/misc'
 import ms from 'ms.macro'
@@ -116,7 +115,7 @@ export default function TransactionSettings() {
         <AutoColumn gap="sm">
           <RowFixed>
             <ThemedText.DeprecatedBlack fontSize={14} fontWeight={400} color={theme.textSecondary}>
-              <Trans>Transaction deadline</Trans>
+              Transaction deadline
             </ThemedText.DeprecatedBlack>
           </RowFixed>
           <RowFixed>
@@ -139,7 +138,7 @@ export default function TransactionSettings() {
               />
             </OptionCustom>
             <ThemedText.DeprecatedBody style={{ paddingLeft: '8px' }} fontSize={14}>
-              <Trans>minutes</Trans>
+              minutes
             </ThemedText.DeprecatedBody>
           </RowFixed>
         </AutoColumn>

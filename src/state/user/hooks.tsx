@@ -1,4 +1,3 @@
-import { Percent, Token } from '@uniswap/sdk-core'
 import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 

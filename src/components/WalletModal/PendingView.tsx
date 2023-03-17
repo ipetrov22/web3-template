@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { Connector } from '@web3-react/types'
 import { ButtonEmpty, ButtonPrimary } from 'components/Button'
 import { AlertTriangle } from 'react-feather'
@@ -81,13 +80,9 @@ export default function PendingView({
           {error ? (
             <ErrorGroup>
               <AlertTriangleIcon />
-              <ThemedText.MediumHeader marginBottom={12}>
-                <Trans>Error connecting</Trans>
-              </ThemedText.MediumHeader>
+              <ThemedText.MediumHeader marginBottom={12}>Error connecting</ThemedText.MediumHeader>
               <ThemedText.BodyPrimary fontSize={16} marginBottom={36} textAlign="center">
-                <Trans>
-                  The connection attempt failed. Please click try again and follow the steps to connect in your wallet.
-                </Trans>
+                The connection attempt failed. Please click try again and follow the steps to connect in your wallet.
               </ThemedText.BodyPrimary>
               <ButtonPrimary
                 $borderRadius="12px"
@@ -95,12 +90,10 @@ export default function PendingView({
                   tryActivation(connector)
                 }}
               >
-                <Trans>Try Again</Trans>
+                Try Again
               </ButtonPrimary>
               <ButtonEmpty width="fit-content" padding="0" marginTop={20}>
-                <ThemedText.Link onClick={openOptions}>
-                  <Trans>Back to wallet selection</Trans>
-                </ThemedText.Link>
+                <ThemedText.Link onClick={openOptions}>Back to wallet selection</ThemedText.Link>
               </ButtonEmpty>
             </ErrorGroup>
           ) : (
@@ -109,11 +102,9 @@ export default function PendingView({
                 <LoaderContainer style={{ padding: '16px 0px' }}>
                   <Loader strokeWidth={0.8} size="100px" />
                 </LoaderContainer>
-                <ThemedText.MediumHeader>
-                  <Trans>Waiting to connect</Trans>
-                </ThemedText.MediumHeader>
+                <ThemedText.MediumHeader>Waiting to connect</ThemedText.MediumHeader>
                 <ThemedText.BodyPrimary style={{ paddingTop: '8px' }}>
-                  <Trans>Confirm this connection in your wallet</Trans>
+                  Confirm this connection in your wallet
                 </ThemedText.BodyPrimary>
               </WaitingToConnectSection>
             </>
