@@ -17,7 +17,6 @@ import { isSupportedChain } from 'constants/chains'
 import usePrevious from 'hooks/usePrevious'
 import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { updateConnectionError } from 'state/connection/reducer'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { updateSelectedWallet } from 'state/user/reducer'
@@ -163,9 +162,6 @@ export default function WalletModal({
   const { connector, account, chainId, provider } = useWeb3React()
   const previousAccount = usePrevious(account)
 
-  const location = useLocation()
-  const navigate = useNavigate()
-
   const [connectedWallets, addWalletToConnectedWallets] = useConnectedWallets()
 
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT)
@@ -192,11 +188,8 @@ export default function WalletModal({
   useEffect(() => {
     if (account && account !== previousAccount && walletModalOpen) {
       toggleWalletModal()
-      if (location.pathname === '/') {
-        navigate('/swap')
-      }
     }
-  }, [account, previousAccount, toggleWalletModal, walletModalOpen, location.pathname, navigate])
+  }, [account, previousAccount, toggleWalletModal, walletModalOpen])
 
   useEffect(() => {
     if (pendingConnector && walletView !== WALLET_VIEWS.PENDING) {
